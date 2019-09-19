@@ -2,21 +2,6 @@ import praw
 import tweepy
 import time
 import os
-#import json
-
-#[[
-#
-# for future json configuration setup
-# gets all of our data from the config file.
-#with open('config.json', 'r') as config_file:
-#    config_data = json.load(config_file)
-#
-#screen_name = config_data["auth"]["screen_name"]
-#
-# authorization from values inputted earlier, do not change.
-#auth = tweepy.OAuthHandler(config_data["auth"]["CONSUMER_KEY"], config_data["auth"]["CONSUMER_SECRET"])
-#auth.set_access_token(config_data["auth"]["ACCESS_TOKEN"], config_data["auth"]["ACCESS_SECRET"])
-#]]
 
 # Place your Twitter API keys here
 access_token = ''
