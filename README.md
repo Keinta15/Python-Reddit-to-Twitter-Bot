@@ -35,6 +35,7 @@ This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw
 * ~~Add retweet, like and follow functionality~~
 * ~~Add post hashtags and searcg by hashtag~~
 * Add config.json file for easier setup
+* Add random tweets
 * Add Reddit Content Filter
 * Add Multiple subreddit
 * Add other sources
