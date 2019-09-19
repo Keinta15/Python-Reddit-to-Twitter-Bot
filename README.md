@@ -15,7 +15,7 @@ This is a simple Python bot that looks up new posts from specified subreddits an
 * Auto follow new followers
 
 
-This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.readthedocs.io/en/latest/)
+This uses the [tweepy](https://github.com/tweepy/tweepy), [praw](https://praw.readthedocs.io/en/latest/)
 
 ### Prerequisites
 
@@ -26,7 +26,7 @@ This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.re
     `pip install praw`
 
 2. "Client ID" & "Client Secret" from your reddit account. [Instructions](https://github.com/reddit-archive/reddit/wiki/OAuth2)
-3. "Consumer Key","Consumer Secret", "Access Token" & "Access Token Secret" from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
+3. "Access Token" & "Access Token Secret","Consumer Key" & "Consumer Secret",  from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
 
 ### To do list:
 
