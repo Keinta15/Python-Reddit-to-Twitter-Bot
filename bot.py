@@ -1,3 +1,4 @@
+# Version 0.2
 import praw
 import tweepy
 import time
@@ -33,7 +34,7 @@ time_between_restarts = 30 * 120 # 1 hour
 keyword_list = []
 
 #Place hastag you want here
-hashtags_id = '#' #determines what hashtag are you using in your tweets
+hashtags_suffix = '#' #determines what hashtag are you using at the end of your tweets
 search = '#' #determines what hashtag are you gonna search for
 numberOfTweets = 1 #number of tweets it will look that are using the hashtag
 numberOfTweets = int(numberOfTweets)
@@ -53,7 +54,7 @@ user = api.me()
 print(user.name)
 print(user.location)
 
-def setup_connection_reddit(subreddit):
+def connection_to_reddit(subreddit):
     '''Connects to Reddit API'''
     print('[bot] Setting up connection with reddit')
     #Place reddit API keys here.
@@ -63,7 +64,7 @@ def setup_connection_reddit(subreddit):
     return reddit_api.subreddit(subreddit)
 
 
-def shorten_title(title,character_count):
+def shrink_title(title,character_count):
     '''Shortens title if too long so that it will fit into a tweet'''
     if len(title) >= character_count:
         return title[:character_count - 1] + '…'
@@ -71,7 +72,7 @@ def shorten_title(title,character_count):
         return title
 
 
-def tweet_creator(subreddit_info):
+def tweet_composer(subreddit_info):
     '''Goes through posts on reddit and extracts a shortened link, title & ID'''
     post_links = []  # list to store our links
     post_titles = []  # list to store our titles
@@ -80,7 +81,7 @@ def tweet_creator(subreddit_info):
     print('[bot] Sucessfully authenticated on Twitter as @' + user.name)
 
     for submission in subreddit_info.new(limit=5):
-        if not already_tweeted(submission.id):
+        if not conflicting_tweet(submission.id):
             if not keyword_list:
                 print("No keywords defined.")
                  # This stores a link to the reddit post itself
@@ -102,13 +103,13 @@ def tweet_creator(subreddit_info):
     return post_links, post_titles, post_ids
 
 
-def record_id(id):
+def id_logging(id):
     '''Logs reddit post ID's into our .txt file'''
     with open(posted_reddit_ids, 'a') as f:
         f.write(str(id)+ '\n')
 
 
-def already_tweeted(post_id):
+def conflicting_tweet(post_id):
     '''reads through our .txt file and determines if tweet has already been posted'''
     found = 0
     with open(posted_reddit_ids, 'r') as f:
@@ -120,7 +121,7 @@ def already_tweeted(post_id):
 
 
 
-def tweeter(post_links,post_titles,post_ids):
+def tweeting(post_links,post_titles,post_ids):
     '''Tweets our reddit posts'''
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -128,15 +129,15 @@ def tweeter(post_links,post_titles,post_ids):
 
     for post_title, post_link, post_id in zip(post_titles, post_links, post_ids):
         extra_text = ' ' + post_link #space needed to seperate the link and the title
-        hashtag = ' ' + hashtags_id #space needed to seperate the link with hashtag
-        post_text = shorten_title(post_title, tweet_max_char - shortlink_max_char - 1) + extra_text + hashtag
+        hashtag = ' ' + hashtags_suffix #space needed to seperate the link with hashtag
+        post_text = shrink_title(post_title, tweet_max_char - shortlink_max_char - 1) + extra_text + hashtag
         print('[' + user.name + '] Posting this tweet to Twitter:')
         print(post_text)
         api.update_status(status = post_text)
         print('[bot] Sleeping for', time_between_tweets, 'seconds')
         time.sleep(time_between_tweets)
         print('[bot] Cleaning up...')
-        record_id(post_id)
+        id_logging(post_id)
 
 def main():
     '''Main function'''
@@ -145,8 +146,8 @@ def main():
         with open(posted_reddit_ids, 'w'):
             pass
 
-    subreddit = setup_connection_reddit(subreddit_to_watch)
-    post_links, post_titles, post_ids = tweet_creator(subreddit)
+    subreddit = connection_to_reddit(subreddit_to_watch)
+    post_links, post_titles, post_ids = tweet_composer(subreddit)
     
 
     if reply == "yes":
@@ -224,7 +225,7 @@ def main():
                 print("[bot]", user.name, "now following " + follower.name)
                 follower.follow()
     
-    tweeter(post_links, post_titles, post_ids)
+    tweeting(post_links, post_titles, post_ids)
     print('[bot] Restarting main process in', time_between_restarts, 'seconds')
     time.sleep(time_between_restarts)
     main()
