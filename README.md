@@ -46,10 +46,6 @@ This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.re
 
 Use at your own liability, I'm not held responsible for what you do with this script or what happens to you by using this script. Abusing this script *can* get you banned from Twitter.
 
-## Authors
-
-* **Keinta15** - [Keinta15](https://github.com/keinta15)
-
 ## License
 
 This project is licensed under the MIT License.
