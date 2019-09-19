@@ -28,12 +28,6 @@ This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.re
 2. "Client ID" & "Client Secret" from your reddit account. [Instructions](https://github.com/reddit-archive/reddit/wiki/OAuth2)
 3. "Consumer Key","Consumer Secret", "Access Token" & "Access Token Secret" from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
 
-~~Additionally, you will need to set up your config.json file.~~
-
-### ~~Setting up config.json file~~
-
-~~This file is the heart of the bot. You must place your twitter auth info in the auth object. I've labeled what you have to put and where to the best of my abilities.~~
-
 ### Todo:
 
 * Add config.json file
