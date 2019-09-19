@@ -18,14 +18,7 @@
     "PostLimit": 10,
     "hashtags_id": "determines what hashtag are you using at the end of your tweets (write with #)", 
     "hashtags_search": "determines what hashtag are you gonna search for (write with #)",
-    "keywords": [
-        "tweet posts with the keywords. Reccomended to enter one keyword. Leave List empty if you want to use keywords.",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+    "keywords": "",
     "number_of_Tweets": "number of tweets it will look that are using the hashtag (just the number)",
     "phrase_to_tweet": "Phrase here for replies",
     "to_reply": "write here 'on' to reply with phrase to people using the hashtag, leave blank if you dont want to (but leave the '')", 
