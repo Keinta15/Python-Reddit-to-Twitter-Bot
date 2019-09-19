@@ -49,6 +49,6 @@ This project is licensed under the MIT License.
 * Feel free to make edits or to comment on my code so that I can improve!
 * Thanks for reading!
 
-If you run into any problems please [file an issue](https://github.com/princeali909/reddit-to-twitter-bot/issues).
+If you run into any problems please [file an issue](https://github.com/Keinta15/Python-Reddit-to-Twitter-Bot/issues).
 
 
