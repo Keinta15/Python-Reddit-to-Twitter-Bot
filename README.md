@@ -1,7 +1,9 @@
 # Python Reddit to Twitter Bot
 
-This is a simple Python bot that looks up new posts from specified subreddits and automatically posts them on Twitter. 
+This is a simple Python bot that looks up new posts in a loop from specified subreddits and automatically posts them on Twitter.
+This project was done mainly for self learning purposes and personal use. You are free to use or distribute the source any way you like.
 
+This bot is being used in the twitter account: [Psychology Bot](https://twitter.com/PsychologyBot24)
 
 **Features:**
 
@@ -13,24 +15,29 @@ This is a simple Python bot that looks up new posts from specified subreddits an
   * Reply to it with a specific phrase
 * Follow all your followers
 * Auto follow new followers
+* Config.json file for setup
 
 
-This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.readthedocs.io/en/latest/)
+This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw.readthedocs.io/en/latest/)
 
 ### Prerequisites
 
 1. You will need tweepy and praw installed. Simply run the corresponding pip command like: 
 
-`pip install tweepy`
+    `pip install tweepy`
 
-`pip install praw`
+    `pip install praw`
 
 2. "Client ID" & "Client Secret" from your reddit account. [Instructions](https://github.com/reddit-archive/reddit/wiki/OAuth2)
-3. "Consumer Key","Consumer Secret", "Access Token" & "Access Token Secret" from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
+3. "Access Token" & "Access Token Secret","Consumer Key" & "Consumer Secret",  from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
 
-### Todo:
+### To do list:
 
-* Add config.json file
+* ~~Add retweet, like and follow functionality~~
+* ~~Add post hashtags and search by hashtag~~
+* ~~Add config.json file for easier setup~~
+* Add direct link media (imgur?)
+* Add random tweets
 * Add Reddit Content Filter
 * Add Multiple subreddit
 * Add other sources
@@ -44,7 +51,7 @@ Use at your own liability, I'm not held responsible for what you do with this sc
 
 This project is licensed under the MIT License.
 
-## Acknowledgments/Other
+## Other
 
 * Feel free to make edits or to comment on my code so that I can improve!
 * Thanks for reading!
