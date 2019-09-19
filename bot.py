@@ -26,7 +26,7 @@ posted_reddit_ids = 'ID_Logs.txt'
 time_between_tweets = 60
 
 #Duration the bot will sleep before restarting the main process in seconds
-time_between_restarts = 30 * 120 # 1 hour
+time_between_restarts = 30 * 60 # 30 minutes
 
 #Keyword inside reddit title.
 #Bot will only tweet posts with the keywords in this list. Reccomended to enter one keyword at a time.
