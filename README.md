@@ -45,7 +45,7 @@ Use at your own liability, I'm not held responsible for what you do with this sc
 
 This project is licensed under the MIT License.
 
-## Acknowledgments/Other
+## Other
 
 * Feel free to make edits or to comment on my code so that I can improve!
 * Thanks for reading!
