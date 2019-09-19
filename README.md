@@ -28,7 +28,7 @@ This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.re
 2. "Client ID" & "Client Secret" from your reddit account. [Instructions](https://github.com/reddit-archive/reddit/wiki/OAuth2)
 3. "Consumer Key","Consumer Secret", "Access Token" & "Access Token Secret" from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
 
-### Todo:
+### To do list:
 
 * Add config.json file
 * Add Reddit Content Filter
