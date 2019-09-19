@@ -21,9 +21,9 @@ This uses the [tweepy](https://github.com/tweepy/tweepy), [PRAW](https://praw.re
 
 1. You will need tweepy and praw installed. Simply run the corresponding pip command like: 
 
-`pip install tweepy`
+    `pip install tweepy`
 
-`pip install praw`
+    `pip install praw`
 
 2. "Client ID" & "Client Secret" from your reddit account. [Instructions](https://github.com/reddit-archive/reddit/wiki/OAuth2)
 3. "Consumer Key","Consumer Secret", "Access Token" & "Access Token Secret" from the twitter account that your bot will be using. [Instructions](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html)
