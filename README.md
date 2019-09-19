@@ -15,7 +15,7 @@ This is a simple Python bot that looks up new posts from specified subreddits an
 * Auto follow new followers
 
 
-This uses the [tweepy](https://github.com/tweepy/tweepy), [praw](https://praw.readthedocs.io/en/latest/)
+This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw.readthedocs.io/en/latest/)
 
 ### Prerequisites
 
