@@ -1,6 +1,6 @@
 # Python Reddit to Twitter Bot
 
-This is a simple Python bot that looks up new posts from specified subreddits and automatically posts them on Twitter.
+This is a simple Python bot that looks up new posts in a loop from specified subreddits and automatically posts them on Twitter.
 This project was done mainly for self learning purposes and personal use. You are free to use or distribute the source any way you like.
 
 
