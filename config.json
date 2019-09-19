@@ -28,10 +28,10 @@
     ],
     "number_of_Tweets": "number of tweets it will look that are using the hashtag (just the number)",
     "phrase_to_tweet": "Phrase here for replies",
-    "to_reply": "write here on to reply with phrase to people using the hashtag, leave blank if you dont want to (but leave the '')", 
-    "to_retweet": "write here on to retweet tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
-    "to_favorite": "write here on to favorite tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
-    "to_follow": "write here on to follow users using the hashtag, leave blank if you dont want to (but leave the '')",
-    "to_followAll": "write here on to follow all the users that are currently following you, leave blank if you dont want to (but leave the '')",
-    "to_autoFollow": "write here on to auto follow users that follows you, leave blank if you dont want to (but leave the '')" 
+    "to_reply": "write here 'on' to reply with phrase to people using the hashtag, leave blank if you dont want to (but leave the '')", 
+    "to_retweet": "write here 'on' to retweet tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_favorite": "write here 'on' to favorite tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_follow": "write here 'on' to follow users using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_followAll": "write here 'on' to follow all the users that are currently following you, leave blank if you dont want to (but leave the '')",
+    "to_autoFollow": "write here 'on' to auto follow users that follows you, leave blank if you dont want to (but leave the '')" 
 }
