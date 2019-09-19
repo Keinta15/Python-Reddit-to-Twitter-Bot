@@ -2,46 +2,79 @@ import praw
 import tweepy
 import time
 import os
+#import json
 
+#[[
+#
+# for future json configuration setup
+# gets all of our data from the config file.
+#with open('config.json', 'r') as config_file:
+#    config_data = json.load(config_file)
+#
+#screen_name = config_data["auth"]["screen_name"]
+#
+# authorization from values inputted earlier, do not change.
+#auth = tweepy.OAuthHandler(config_data["auth"]["CONSUMER_KEY"], config_data["auth"]["CONSUMER_SECRET"])
+#auth.set_access_token(config_data["auth"]["ACCESS_TOKEN"], config_data["auth"]["ACCESS_SECRET"])
+#]]
 
 # Place your Twitter API keys here
-access_token = '1174196504728408064-nJJ5hvbyFREDWGCj2DtXNsjCzYQKNN'
-access_token_secret = 'KwgwiVDRU6WLi7llQCOtjKfcYCi0gi45aqGLzEauAHZj9'
-consumer_key = 'O1L7WOMajLAB9MZfLTVwgBfbo'
-consumer_secret = 'JDtVG7j1hTyOd7B6T0CqEU3EoKnCCxmgRDoH8baZAjWNPzSo4R'
+access_token = ''
+access_token_secret = ''
+consumer_key = ''
+consumer_secret = ''
 
 #Here is the max amount of characters we can put in a tweet
 tweet_max_char = 240
+
 #Here is the amount of characters a shortlink takes up
 shortlink_max_char = 24
 
 #Subreddit we are trying to extraxt posts from (no need to add the r/ in the beggining)
-subreddit_to_watch = 'psychology'
+subreddit_to_watch = ''
 
 #Every reddit post has an ID, here we want to store these ID's in a .txt file to avoid tweeting the same post twice.
-posted_reddit_ids = 'example.txt'
+posted_reddit_ids = 'ID_Logs.txt'
 
 #Duration your bot will wait before tweeting again in seconds
 time_between_tweets = 60
 
 #Duration the bot will sleep before restarting the main process in seconds
-time_between_restarts = 120
+time_between_restarts = 30 * 120 # 1 hour
 
 #Keyword inside reddit title.
 #Bot will only tweet posts with the keywords in this list. Reccomended to enter one keyword at a time.
 #Leave List empty if you want bot to tweet all posts.
 keyword_list = []
 
-hashtags_id = '#psychology'
+#Place hastag you want here
+hashtags_id = '#' #determines what hashtag are you using in your tweets
+search = '#' #determines what hashtag are you gonna search for
+numberOfTweets = 1 #number of tweets it will look that are using the hashtag
+numberOfTweets = int(numberOfTweets)
+phrase = "Phrase here" #phrase for replies
+reply = "" #reply with phrase to people using the hashtag
+retweet = "" #retweet tweets that are using the hashtag
+favorite = "yes" #favorite tweets that are using the hashtag
+follow = "" #Follow users that use the hashtag
+followAll = "" #Follow all users that are currently following you
+autoFollow = "yes" #auto follows users that follows you
 
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+user = api.me()
 
+print(user.name)
+print(user.location)
 
 def setup_connection_reddit(subreddit):
     '''Connects to Reddit API'''
     print('[bot] Setting up connection with reddit')
     #Place reddit API keys here.
     reddit_api = praw.Reddit(user_agent = 'Twitter Bot'.format(subreddit),
-                              client_id = 'n7TRTkXLMy2QlQ', client_secret = 'Ukf4dDG6nIHwbp8wbkqPUlwyWJo')
+                              client_id = '', #Place Client ID
+                              client_secret = '') #Place Client Secret
     return reddit_api.subreddit(subreddit)
 
 
@@ -59,11 +92,15 @@ def tweet_creator(subreddit_info):
     post_titles = []  # list to store our titles
     post_ids = []  # list to store our id's
     print("[bot] extracting posts from sub-reddit")
+    print('[bot] Sucessfully authenticated on Twitter as @' + user.name)
 
-    for submission in subreddit_info.new(limit=20):
+    for submission in subreddit_info.new(limit=5):
         if not already_tweeted(submission.id):
             if not keyword_list:
-                print("No keywords.")
+                print("No keywords defined.")
+                 # This stores a link to the reddit post itself
+                 # If you want to link to what the post is linking to instead, use
+                 # "submission.url" instead of "submission.permalink"
                 post_titles.append(submission.title)
                 post_links.append(submission.shortlink)
                 post_ids.append(submission.id)
@@ -76,7 +113,7 @@ def tweet_creator(subreddit_info):
                     print("This isn't the post your looking for.")
 
         else:
-            print("Already Tweeted")
+            print("[" + user.name +"] Skipping because tweet was already posted")
     return post_links, post_titles, post_ids
 
 
@@ -103,23 +140,18 @@ def tweeter(post_links,post_titles,post_ids):
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
-    #twitter_username = twitter.me().screen_name
-    #print('[ OK ] Sucessfully authenticated on Twitter as @' + twitter_username)
 
     for post_title, post_link, post_id in zip(post_titles, post_links, post_ids):
         extra_text = ' ' + post_link #space needed to seperate the link and the title
-        hashtag = ' ' + hashtags_id
+        hashtag = ' ' + hashtags_id #space needed to seperate the link with hashtag
         post_text = shorten_title(post_title, tweet_max_char - shortlink_max_char - 1) + extra_text + hashtag
-        print('[bot] Posting this tweet to Twitter:')
+        print('[' + user.name + '] Posting this tweet to Twitter:')
         print(post_text)
         api.update_status(status = post_text)
         print('[bot] Sleeping for', time_between_tweets, 'seconds')
         time.sleep(time_between_tweets)
-        print('[bot] Restarting main process...')
+        print('[bot] Cleaning up...')
         record_id(post_id)
-
-
-
 
 def main():
     '''Main function'''
@@ -130,6 +162,83 @@ def main():
 
     subreddit = setup_connection_reddit(subreddit_to_watch)
     post_links, post_titles, post_ids = tweet_creator(subreddit)
+    
+
+    if reply == "yes":
+        for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+            try:
+                #Reply
+                print('\nTweet by: @' + tweet.user.screen_name)
+                print('ID: @' + str(tweet.user.id))
+                tweetId = tweet.user.id
+                username = tweet.user.screen_name
+                api.update_status("@" + username + " " + phrase, in_reply_to_status_id = tweetId)
+                print ("Replied with " + phrase)
+                
+            except tweepy.TweepError as e:
+                print(e.reason)
+
+            except StopIteration:
+                break
+
+    if retweet == "yes": 
+        for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+            try:
+                #Retweet
+                tweet.retweet()
+                print('[' + user.name + '] Retweeted a tweet')   
+
+            except tweepy.TweepError as e:
+                print(e.reason)
+
+            except StopIteration:
+                break
+
+    if favorite == "yes": 
+        for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+            try:
+                #Favorite
+                tweet.favorite()
+                print('[' + user.name + '] Favorited a tweet')   
+
+            except tweepy.TweepError as e:
+                print(e.reason)
+
+            except StopIteration:
+                break
+
+    if follow == "yes": 
+        for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+            try:
+                #Follow
+                tweet.user.follow()
+                print('[' + user.name + '] Followed a user')
+                
+            except tweepy.TweepError as e:
+                print(e.reason)
+
+            except StopIteration:
+                break 
+
+    if followAll == "yes":
+        for follower in tweepy.Cursor(api.followers).items():
+            try: 
+                print("[bot] Checking if", user.name, "has more followers")
+                follower.follow()
+                print("[bot] Followed everyone that is following " + user.name, "if it wasnt following already.")
+            except tweepy.TweepError as e:
+                print(e.reason)
+
+            except StopIteration:
+                break
+
+    if autoFollow == "yes":
+        print("[bot] Checking if", user.name, "has more followers")
+        for follower in tweepy.Cursor(api.followers).items():
+            if not follower.following:
+                print("[bot]", user.name, "now following " + follower.name)
+                follower.follow()
+    
     tweeter(post_links, post_titles, post_ids)
     print('[bot] Restarting main process in', time_between_restarts, 'seconds')
     time.sleep(time_between_restarts)
