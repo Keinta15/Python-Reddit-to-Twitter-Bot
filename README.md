@@ -33,7 +33,7 @@ This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw
 ### To do list:
 
 * ~~Add retweet, like and follow functionality~~
-* ~~Add post hashtags and searcg by hashtag
+* ~~Add post hashtags and searcg by hashtag~~
 * Add config.json file for easier setup
 * Add Reddit Content Filter
 * Add Multiple subreddit
