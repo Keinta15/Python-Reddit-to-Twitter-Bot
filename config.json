@@ -1,0 +1,37 @@
+{
+    "auth":
+    {
+        "CONSUMER_KEY": "Consumer Key Here",
+        "CONSUMER_SECRET": "Consumer Secret Here",
+        "ACCESS_TOKEN": "Access Token Here",
+        "ACCESS_SECRET": "Access Secret Here"
+    },
+
+    "reddit_api":
+    {
+        "USER_AGENT": "Twitter Bot",
+        "CLIENT_ID": "Client ID Here",
+        "SECRET_ID": "Secret ID here"
+    },
+
+    "subreddit_watch": "Put Subreddit you want to watch here, no need to put /r/",
+    "PostLimit": 10,
+    "hashtags_id": "determines what hashtag are you using at the end of your tweets (write with #)", 
+    "hashtags_search": "determines what hashtag are you gonna search for (write with #)",
+    "keywords": [
+        "tweet posts with the keywords. Reccomended to enter one keyword. Leave List empty if you want to use keywords.",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "number_of_Tweets": "number of tweets it will look that are using the hashtag (just the number)",
+    "phrase_to_tweet": "Phrase here for replies",
+    "to_reply": "write here 'on' to reply with phrase to people using the hashtag, leave blank if you dont want to (but leave the '')", 
+    "to_retweet": "write here 'on' to retweet tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_favorite": "write here 'on' to favorite tweets that are using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_follow": "write here 'on' to follow users using the hashtag, leave blank if you dont want to (but leave the '')",
+    "to_followAll": "write here 'on' to follow all the users that are currently following you, leave blank if you dont want to (but leave the '')",
+    "to_autoFollow": "write here 'on' to auto follow users that follows you, leave blank if you dont want to (but leave the '')" 
+}

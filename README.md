@@ -15,6 +15,7 @@ This bot is being used in the twitter account: [Psychology Bot](https://twitter.
   * Reply to it with a specific phrase
 * Follow all your followers
 * Auto follow new followers
+* Config.json file for setup
 
 
 This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw.readthedocs.io/en/latest/)
@@ -34,7 +35,7 @@ This uses the [tweepy](https://github.com/tweepy/tweepy) and [praw](https://praw
 
 * ~~Add retweet, like and follow functionality~~
 * ~~Add post hashtags and search by hashtag~~
-* Add config.json file for easier setup
+* ~~Add config.json file for easier setup~~
 * Add direct link media (imgur?)
 * Add random tweets
 * Add Reddit Content Filter
